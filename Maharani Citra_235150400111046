@@ -1,0 +1,61 @@
+package pemlan.case2a;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Studentdatabase database = new Studentdatabase ();
+        Scanner scanner = new Scanner(System.in);
+
+        boolean next = true;
+        while (next) {
+            System.out.print("masukkan nim : ");
+            String nim = scanner.nextLine();
+
+            System.out.print("masukkan nama : ");
+            String nama = scanner.nextLine();
+
+            System.out.print("masukkan alamat: ");
+            String alamat = scanner.nextLine();
+
+
+            database.addStudent (nim, nama, alamat);
+
+            System.out.print("tambah lagi? (ya/tidak) : ");
+            String tambah = scanner.nextLine();
+
+            if (!tambah.equals("ya")) {
+                next = false;
+            }
+        }
+
+        System.out.println("==================================");
+        database.displayStudent();
+    }
+}
+
+class Studentdatabase {
+    private ArrayList<String> namas;
+    private ArrayList<String> nims;
+    private ArrayList<String> alamats;
+
+    public Studentdatabase () {
+        namas = new ArrayList<>();
+        nims = new ArrayList<>();
+        alamats = new ArrayList<>();
+    }
+
+    public void addStudent(String nim, String nama, String alamat) {
+        nims.add(nim);
+        namas.add(nama);
+        alamats.add(alamat);
+    }
+
+    public void displayStudent() {
+        for (int i = 0; i < nims.size(); i++) {
+            System.out.println(nims.get(i) + " | " + namas.get(i) + " | " + alamats.get(i));
+        }
+    }
+}
